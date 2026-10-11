@@ -1,3 +1,4 @@
+
 # SBA 400 - Advanced SQL E-Commerce Project
 
 ## About This Project
@@ -32,15 +33,20 @@ The project helped me understand how to manage data, connect tables, and retriev
 - Found the top 3 customers based on total spending.
 - Found the most popular product category based on quantity sold.
 
-**6. View Management**
+**6. Trigger Management**
+- Created a ProductAudit table to track product changes.
+- Created a trigger to record product price changes.
+- Updated the trigger to track category changes as well.
+- Practiced deleting triggers.
+
+**7. View Management**
 - Created a view using multiple tables.
 - Updated the view to include more information.
 - Deleted the view using DROP VIEW.
 
 ## Project Progress
 
-- Completed: Components 1, 2, 3, 4, 5, and 7
-- Still working on: Component 6
+- Completed: Components 1, 2, 3, 4, 5, 6, and 7
 
 ## Project Files
 
