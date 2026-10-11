@@ -50,8 +50,16 @@ The project helped me understand how to manage data, connect tables, and retriev
 
 ## Project Files
 
-- `sba_advanced_sql_ecommerce.sql` - Contains my SQL code.
+- `ecommerce.sql` - Contains the original database tables and sample data.
+- `sba_advanced_sql_ecommerce.sql` - Contains my SQL work, including indexes, constraints, triggers, views, and queries.
 - `README.md` - Explains my project and progress.
+
+## How to Run
+
+1. Download or clone this repository.
+2. Open MySQL Workbench.
+3. Run `ecommerce.sql` first to create the database and add sample data.
+4. Run `sba_advanced_sql_ecommerce.sql` to execute the advanced SQL tasks.
 
 ## What I Learned
 
