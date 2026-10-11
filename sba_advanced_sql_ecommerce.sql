@@ -142,3 +142,46 @@ SELECT * FROM BusinessScenarioView;
 
 /* removing the view */
 DROP VIEW BusinessScenarioView;
+
+/* creating a table to keep track of product changes */
+CREATE TABLE ProductAudit (
+    audit_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    old_price DECIMAL(10, 2),
+    new_price DECIMAL(10, 2),
+    old_category VARCHAR(100),
+    new_category VARCHAR(100),
+    change_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+/* creating a trigger to record product price changes */
+DELIMITER &&
+CREATE TRIGGER trg_product_price_audit
+AFTER UPDATE ON products
+FOR EACH ROW
+BEGIN
+    IF OLD.price <> NEW.price THEN
+        INSERT INTO ProductAudit (product_id, old_price, new_price)
+        VALUES (NEW.product_id, OLD.price, NEW.price);
+    END IF;
+END &&
+DELIMITER ;
+
+/* removing the old trigger before creating the updated one */
+DROP TRIGGER IF EXISTS trg_product_price_audit;
+
+/* updating the trigger to track price and category changes */
+DELIMITER &&
+CREATE TRIGGER trg_product_audit
+AFTER UPDATE ON products
+FOR EACH ROW
+BEGIN
+    IF OLD.price <> NEW.price OR OLD.category <> NEW.category THEN
+        INSERT INTO ProductAudit (product_id, old_price, new_price, old_category, new_category)
+        VALUES (NEW.product_id, OLD.price, NEW.price, OLD.category, NEW.category);
+    END IF;
+END &&
+DELIMITER ;
+
+/* removing the trigger */
+DROP TRIGGER IF EXISTS trg_product_audit;
